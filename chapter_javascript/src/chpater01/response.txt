@@ -1,0 +1,10 @@
+### axios와 fetch간 호출 방식의 차이를 알아보았다.
+
+[개인 견해]
+    * 결론은 fetch보다 axios가 더 좋다.
+        - axios의 장점
+            > 코드량이 적다.
+            > 재사용이 편리하다. (feat. 인스턴스)
+            > 옵션 사용이 편리하다.
+                - headers, body, params...
+                * fetch는 body에 객체를 담으려면 get메서드를 사용할 수 없다.
