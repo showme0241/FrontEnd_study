@@ -1,22 +1,14 @@
 import React from "react";
 import { RouterProvider } from "react-router-dom";
-import useData from "./chapter01/Hooks/useData";
-import router from "./chapter01/Routes/router";
-
-export const DiaryStateContext = React.createContext();
-export const DiaryDispatchContext = React.createContext();
+import router from "./chapter02/Routes/router";
+import GlobalStyle from "./chapter02/Styles/global";
 
 function App() {
-    const { data, onCreate, onDelete, onUpdate } = useData();
-
     return (
-        <DiaryStateContext.Provider value={data}>
-            <DiaryDispatchContext.Provider
-                value={{ onCreate, onDelete, onUpdate }}
-            >
-                <RouterProvider router={router} />
-            </DiaryDispatchContext.Provider>
-        </DiaryStateContext.Provider>
+        <>
+            <GlobalStyle />
+            <RouterProvider router={router} />
+        </>
     );
 }
 
