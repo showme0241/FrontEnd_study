@@ -1,0 +1,39 @@
+### MSW에 대해 알아보았다.
+
+1. msw를 import 하기 위해 npm install msw --save-dev
+2. 모의 응답의 저장소를 생성하기 위해 npx msw init public/ --save
+
+msw 사용하기 위해 앞서 간단한 개념을 정리하려고 한다.
+
+* msw를 사용하는 목적
+백엔드 API가 개발되기 전에 미리 프론트엔드에서
+개발을 가능하게 하여 시간을 절약시키는데 있다.
+
+* msw를 사용하는 순서
+
+1. 핸들러 : 모의응답을 처리하는 로직
+- const handlers = [
+    rest.get("url/login", (req,res,ctx) => {
+        ex)
+        const {email, pw} = req.body
+
+        데이터 저장소 탐색
+        const user = userMockData.find(user => user.email === email)
+
+        if(user) {
+            res(ctx.status(200), ctx.json(// 응답받을 값)
+        }
+    })
+]
+
+2. 서비스 워커 : 클라이언트 사이드에서 구동되게 하기 위함
+- export const worker = setupWorker(...handlers)
+- if(env.NODE_ENV === "development") {
+    worker.start()
+}
+
+3. 핸들러 배열에 담길 응답 로직을 모듈화하면 path별 처리가 다양해진다.
+- const handlers = [
+    // 값을 펼쳐 배열로 반환하는 메서드
+    ...Object.Values(외부 응답로직)
+]
