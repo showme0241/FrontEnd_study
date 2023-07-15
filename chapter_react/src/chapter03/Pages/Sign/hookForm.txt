@@ -1,0 +1,27 @@
+### react-hook-form
+
+실무에서는 전혀 사용해보지 못한 리액트 훅폼
+비제어형 컴포넌트로 구성되어 불필요한 리렌더를 방지한다.
+
+* 사실, 컨트롤러(Controller)와 레지스터(register)를 비교하면서 차이점을 알아보려고 했지만
+  컨트롤러의 장점을 기술하게 되었다.
+
+  둘의 차이라고 하면 정확히는 모르겠지만 편의성에 포커싱되어 있는 것 같다.
+  경험상 Controller는 register를 사용할 때보다 props drilling이 덜하고,
+  모듈화된 컴포넌트와 호환이 상대적으로 잘 된다.
+
+그래서 Controller 컴포넌트는 좋은 친구다.
+속성으로는 name, rules, control, render가 있다.
+
+여기서 자주 사용되는 것은
+1. 유효성 검사를 위한 rules
+- 조건에 맞는 유효값을 체크해줄 프로퍼티로 필수값과 필요값이 있다.
+
+* required : 필수값
+* 이외 : 필요값 (pattern : 자주 사용)
+
+2. 함수형 컴포넌트를 반환할 render 합수
+- render 함수 인자인 field는 반환될 컴포넌트에 prop으로 전달하면 Controller가
+  쥐고 있던 속성을 알아서 가지고 간다.
+
+  * field는 name, value, onChange, onBlur를 가지고 있다.

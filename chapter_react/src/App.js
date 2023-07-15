@@ -1,7 +1,7 @@
 import React from "react";
 import { RouterProvider } from "react-router-dom";
-import router from "./chapter02/Routes/router";
-import GlobalStyle from "./chapter02/Styles/global";
+import router from "./chapter03/Routes/router";
+import GlobalStyle from "./chapter03/Styles/global";
 
 function App() {
     return (
