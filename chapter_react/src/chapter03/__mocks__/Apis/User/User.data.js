@@ -9,10 +9,10 @@ export const UserMockData = [
         // 그외 데이터
     },
     {
-        email: "doeum.kim@gmail.com",
+        email: "doeun.kim@gmail.com",
         nickname: "eun",
-        profile_img: "",
-        password: "",
-        business: "",
+        profile_img: "우와왕",
+        password: "456asd!@#",
+        business: "000-00-00000",
     },
 ];

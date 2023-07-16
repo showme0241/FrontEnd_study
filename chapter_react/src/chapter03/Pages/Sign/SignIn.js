@@ -9,7 +9,12 @@ import ControlItem from "./Components/ControlItem";
 const PATH = "/api/user/login";
 
 export default function SignIn() {
-    const { watch, control, handleSubmit } = useForm();
+    const { watch, control, handleSubmit } = useForm({
+        defaultValues: {
+            email: "",
+            pw: "",
+        },
+    });
     const navigate = useNavigate();
 
     const email = watch("email");
@@ -21,14 +26,17 @@ export default function SignIn() {
         try {
             const res = await axiosInstance.post(PATH, { email, pw });
 
-            if (res.status === "200") {
-                // 로그인 정보 저장
-                // localStorage.setItem("고유키", 저장값)
+            if (res.status === 200) {
+                const user = res.data;
+                localStorage.setItem("login", JSON.stringify(user));
+                // 로그인 환경에서 set한 user를 가지고 get하여 사용이 용이하게끔
+                // 모듈화 시켜놓으면 베스트
 
                 navigate("/");
             }
         } catch (error) {
-            console.log("");
+            const { message } = error.response.data;
+            console.log(message);
         }
     };
 

@@ -27,8 +27,9 @@ export const SignUpApi = rest.post("/api/user", (req, res, ctx) => {
     );
 });
 
-export const SignInApi = rest.get("/api/user/login", (req, res, ctx) => {
+export const SignInApi = rest.post("/api/user/login", (req, res, ctx) => {
     const { email, pw } = req.body;
+    console.log(email, pw);
 
     const user = UserMockData.find(
         (user) => user.email === email && user.password === pw
@@ -36,7 +37,7 @@ export const SignInApi = rest.get("/api/user/login", (req, res, ctx) => {
 
     // 로그인 성공의 경우,
     if (user) {
-        return res(ctx.status(200), ctx.json(UserMockData));
+        return res(ctx.status(200), ctx.json(user));
     }
 
     // 아이디 혹은 비밀번호가 일부 일치하는 경우
@@ -53,7 +54,7 @@ export const SignInApi = rest.get("/api/user/login", (req, res, ctx) => {
     return res(
         ctx.status(400),
         ctx.json({
-            message: "회원정보가 일치하지 않습니다.",
+            message: "가입되어있지 않은 정보입니다.",
         })
     );
 });
