@@ -1,0 +1,40 @@
+### async & await
+
+- async는 비동기 함수로 변경시키며, Promise 형태의 객체를 반환하는 역할을 한다.
+    명시적으로 new Promise((resolve, rejected)=>{}), Promise.resolve()를 할 때도 있다.
+
+
+- await은 async가 감싼 비동기 함수 내에서 동기 처리해줄 수 있게 then의 대체제이다.
+    > 실제로 API 데이터를 호출하는 과정에서 딜레이가 생겼을 때, 데이터가 응답될 때까지 기다린다.
+    > 항상 async가 감싼 함수내에서만 작성이 가능하며, 딜레이가 발생하는 응답의 경우, 유용하게 사용이 가능하다.
+    > top-level code에서는 사용이 불가하지만 (async () => {})() 익명 async 함수로 코드를 감싸면 탑 레벨에서도 사용이 가능하다.
+
+async f() {
+    try {
+        const stateData = await fetch("주소", {body: JSON.stringify(email)})
+        const result = await stateData.json()
+
+        console.log(result)
+
+        
+        여러개의 프로미스를 처리하는 상황이라면...
+        Promise.all을 통해 여러 호출을 받아야되는 상황을 고려...
+
+        let results = await Promise.all([
+            fetch()
+            fetch()
+            fetch()
+        ])
+
+        const responseList = results.map(async (data) => {
+            const res = await data.json()
+
+            return res.data
+        })  
+
+        console.log(responseList) // [data, data, data]
+    } catch(error) {
+        console.log(error)
+    }
+}
+
