@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import AxiosApi from "./chpater01/axios";
-import FetchApi from "./chpater01/fetch";
+import AxiosApi from "./chapter01/axios";
+import FetchApi from "./chapter01/fetch";
 
 function App() {
     // 데이터 저장소
