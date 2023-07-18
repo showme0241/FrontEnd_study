@@ -12,3 +12,37 @@
 비동기 : 동기 흐름을 무시하여 실행
 - A 함수가 실행된 이후, 종료되기 전 B 함수를 실행
 
+
+### 프로미스
+
+비동기 함수를 동기 처리하기 위해 고안한 객체
+함수 실행이 완료된 후, 다음 작업을 연결시켜 진행
+
+3가지 상태 및 처리 흐름
+- pending
+    ㄴ fulfilled
+    ㄴ rejected
+
+
+프로미스 객체 기본 형태
+function AsyncFunc() {
+    return new Promise((resolve, rejected) => {
+        let try = () => {}
+
+        if (try) {
+            resolve(res)
+        } else {
+            rejected(err)
+        }
+    })
+}
+
+AsyncFunc.then((res)=>{
+    console.log(res)
+}).catch((err)=>{
+    console.log(err)
+})
+
+// 보통의 호출 함수는 대부분 프로미스 기반
+// 성공값과 에러값을 핸들링을 요하는 함수
+// fetch API, axios ...
