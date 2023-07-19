@@ -15,9 +15,21 @@ async function greet() {
     });
 }
 
-greet().then((num) => {
-    console.log(num);
-});
+function smile(res) {
+    if (res === 1) {
+        console.log("웃음");
+    } else {
+        console.log("놀람");
+    }
+}
+
+greet()
+    .then((num) => {
+        console.log(num);
+    })
+    .then((res) => {
+        smile(res);
+    });
 
 // async = promise 객체를 반환하는 역할
 async function nice() {
