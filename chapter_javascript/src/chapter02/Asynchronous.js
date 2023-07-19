@@ -1,6 +1,6 @@
-async function Func(param1, param2, callbackFunc) {
+function Func(param1, param2, callbackFunc) {
     // 서버 데이터 호출 로직
-    const res = await `데이터 호출 메서드(url, body: ${(param1, param2)})`;
+    const res = `데이터 호출 메서드(url, body: ${(param1, param2)})`;
 
     // 콜백 함수로 결과를 인자로 넘겨...
     callbackFunc(res?.data);
@@ -11,7 +11,7 @@ function callbackFunc(res) {
     console.log(res);
 }
 
-Func("param1", "param2", "callbackFunc");
+Func("param1", "param2", callbackFunc);
 
 // 예시
 function buy_asis(item, price, quantity, callback) {
