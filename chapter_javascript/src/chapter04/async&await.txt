@@ -1,0 +1,21 @@
+### Async & await
+- 직접적인 데이터 호출을 하며 async & await의 편의를 알아보았다.
+
+1. callbackFunc
+- 동기에서 비동기 로직으로 강제 맞춤
+- 데이터를 물고, 물고, 또 물고... 콜백지옥
+
+2. new Promise
+- resolve, rejected 함수로 성공과 에러를 핸들링
+- 비동기 함수 뒤에 then 함수를 적으면, 콜백함수로 resolve의 인자를 받음
+- 체이닝 기법을 통해 콜백지옥에서 탈출...?
+- then 입력하면서 콜백인자로 결과값을 받아야하기 때문에 콜백 지옥과 비슷한 현상 발견
+
+3. async & await
+- 비동기 만들기 = async / 결과값 반환 = await
+- try... catch와 함께 사용하여 성공과 에러를 핸들링
+- 비동기 함수 바깥에서 결과값을 전달받는 new Promise구조와는 상이하게
+  함수 내에 await로 resolve 반환값을 변수에 전달
+- resolve 반환값을 받은 변수를 활용해서 추가 await 혹은 조건문으로 이어지기 용이
+- 앞선 비동기 로직과 비교했을 때, 함수 내에서 로직이 종료된다는 점과 resolve값을 반환받아
+  pending 상태를 fulfilled상태로 데이터 열람이 손쉽다는 점이다.
