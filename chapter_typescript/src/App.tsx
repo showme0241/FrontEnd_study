@@ -1,12 +1,12 @@
 import React from "react";
 import { RouterProvider } from "react-router-dom";
-import { ContextFunc, ContextItem } from "./@types/interface";
-import useData from "./chapter02/Hooks/useData";
+import { ContextFunc } from "./@types/interface";
+import useData, { Data } from "./chapter02/Hooks/useData";
 import router from "./chapter02/Routes/router";
 import GlobalStyle from "./chapter02/styles/global";
 
 export const funcContext = React.createContext<ContextFunc | null>(null);
-export const stateContext = React.createContext<ContextItem[] | null>(null);
+export const stateContext = React.createContext<Data[] | null>(null);
 
 export default function App() {
     const { data, onCreate, onRemove, onUpdate } = useData();

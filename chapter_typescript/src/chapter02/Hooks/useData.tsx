@@ -1,14 +1,34 @@
-import { useRef, useState } from "react";
-import { ContextItem } from "../../@types/interface";
+import axios from "axios";
+import { useEffect, useRef, useState } from "react";
+
+const base_url = "https://jsonplaceholder.typicode.com";
+const path = "/todos";
+
+export interface Data {
+    completed?: boolean;
+    id: number;
+    title: string;
+    userId?: number;
+}
 
 export default function useData() {
-    const [data, setData] = useState<ContextItem[]>([]);
+    const [data, setData] = useState<Data[]>([]);
     const ref = useRef(0);
 
-    const onCreate = (title: string, content: string) => {
+    useEffect(() => {
+        const getData = async () => {
+            const res = await axios.get(`${base_url}${path}`);
+
+            setData(res.data.slice(0, 10));
+        };
+
+        getData();
+    }, []);
+
+    const onCreate = (title: string) => {
         let id = ref.current;
 
-        setData((prev) => [...prev, { id, title, content }]);
+        setData((prev) => [...prev, { id, title }]);
         id += 1;
     };
 
@@ -16,8 +36,8 @@ export default function useData() {
         setData(data.filter((it) => it.id !== id));
     };
 
-    const onUpdate = (id: number, title: string, content: string) => {
-        setData(data.map((it) => (it.id === id ? { id, title, content } : it)));
+    const onUpdate = (id: number, title: string) => {
+        setData(data.map((it) => (it.id === id ? { id, title } : it)));
     };
 
     return { data, onCreate, onRemove, onUpdate };
