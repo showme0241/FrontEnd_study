@@ -1,3 +1,9 @@
+import QueryData from "../../../chapter04/react-query";
+
 export default function Main() {
-    return <div></div>;
+    return (
+        <div>
+            <QueryData />
+        </div>
+    );
 }

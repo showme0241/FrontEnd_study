@@ -1,0 +1,55 @@
+### 리액트 쿼리
+리액트 쿼리는 서버 상태 관리, 캐싱, 동기화 및 업데이트를 쉽게 만듭니다.
+
+보통의 경우,
+restAPI를 이용하여 데이터를 응답받고, 응답 데이터를 사용해야 한다면
+거쳐야하는 과정이 번거로운 부분이 많다.
+
+일반적인 호출, 응답 그리고 사용 로직
+1. 비동기 함수 선언
+- async & await 또는 then & catch를 사용
+2. 데이터 호출
+- fetch API 또는 axios
+3. 데이터 응답
+- useEffect를 데이터 응답 함수 호출
+4. 데이터 저장
+- useState | useReducer를 사용하여 데이터 저장
+5. 데이터 사용
+
+리액트 쿼리는 위 보다 로직이 엄청 짧고, 코드량의 감소가 확연히 많다.
+그와 같은 순서는 아래와 같다.
+
+1. 위 로직의 1번부터 5번이 하나의 코드에서 모든 것이 해결된다.
+- const { isLoading:데이터 호출중, error:데이터 에러, data:응답 데이터 } = useQuery(
+    ["쿼리 키 : 유니크값"], ()=> {
+        비동기 호출 함수
+        응답 리턴
+    }, {
+        옵션 : staleTime: number, cacheTime: number
+    }
+)
+
+=> data를 바로 꺼내어 사용
+=> 옵션은 클라이언트의 데이터 캐싱 시간과 관련이 있다.
+=> 데이터 패칭과 관련이 있는 invalidateQueries, refetchQueries... 의
+   선수 지식 또한 갖춰져야 캐싱과 패칭을 깊이 이해하고, 리액트 쿼리의 활용성이 좋아진다.
+
+await queryClient.invalidateQueries({
+  queryKey: ['posts'],
+  exact,
+  refetchType: 'active',
+}, { throwOnError, cancelRefetch })
+=> queryKey와 일치하는 값은 캐시의 단일 또는 여러 쿼리를 무효화
+   => 백그라운드에서 데이터를 다시 가져옵니다.
+
+await queryClient.refetchQueries({
+    queryKey: ['posts'],
+    type: 'active' 
+})
+=> queryKey와 일치하는 값은 특정 조건에 따라 쿼리를 다시 가져오는데의 기준
+=> 역할은 비슷한 메서드
+    => 캐싱된 데이터를 패칭하는 역할로서 수행
+    => 공통의 속성 (프로퍼티이자, 메서드) 
+        refetchPage: (page: Tdata, index: number, allPages: Tdata[]) => boolean
+        => 무한스크롤링을 할 때, 특정 페이지의 값을 기준으로 데이터를 새롭게 불러오게 해준다.
+        => 해당 프로퍼티는 useInfiniteQuery에서 반환되는 refetch에서... 사용됩니다.
