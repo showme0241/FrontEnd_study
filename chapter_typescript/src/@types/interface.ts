@@ -5,7 +5,7 @@ export interface ContextItem {
 }
 
 export interface ContextFunc {
-    onCreate: (title: string, content: string) => void;
+    onCreate: (title: string) => void;
     onRemove: (id: number) => void;
-    onUpdate: (id: number, title: string, content: string) => void;
+    onUpdate: (id: number, title: string) => void;
 }
