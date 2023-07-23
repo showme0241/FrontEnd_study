@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const base_url = "https://jsonplaceholder.typicode.com";
 const path = "/todos";
@@ -13,32 +13,36 @@ export interface Data {
 
 export default function useData() {
     const [data, setData] = useState<Data[]>([]);
-    const ref = useRef(0);
+    const dataId = useRef(0);
 
     useEffect(() => {
         const getData = async () => {
             const res = await axios.get(`${base_url}${path}`);
-
-            setData(res.data.slice(0, 10));
+            const dataList = res.data.slice(0, 10);
+            setData(dataList);
         };
 
         getData();
     }, []);
 
-    const onCreate = (title: string) => {
-        let id = ref.current;
+    const sortedData = useMemo(() => {
+        const result = data.slice().sort((a, b) => b.id - a.id);
+        dataId.current = Number(result[0]?.id + 1);
 
-        setData((prev) => [...prev, { id, title }]);
-        id += 1;
+        return result;
+    }, [data]);
+
+    const onCreate = (title: string) => {
+        setData((prev) => [...prev, { id: dataId.current, title }]);
     };
 
     const onRemove = (id: number) => {
-        setData(data.filter((it) => it.id !== id));
+        setData(sortedData.filter((it) => it.id !== id));
     };
 
     const onUpdate = (id: number, title: string) => {
-        setData(data.map((it) => (it.id === id ? { id, title } : it)));
+        setData(sortedData.map((it) => (it.id === id ? { id, title } : it)));
     };
 
-    return { data, onCreate, onRemove, onUpdate };
+    return { sortedData, onCreate, onRemove, onUpdate };
 }
