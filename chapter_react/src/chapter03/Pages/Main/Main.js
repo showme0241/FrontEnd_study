@@ -1,13 +1,16 @@
-import { useNavigate } from "react-router-dom";
-import QueryData from "../../../chapter04/react-query";
+import { useState } from "react";
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorTest, { ErrorFallBack } from "../../../chapter05/ErrorTest";
 
 export default function Main() {
-    const navigate = useNavigate();
+    const [error, setError] = useState(false);
 
     return (
-        <div>
-            <QueryData />
-            <button onClick={() => navigate("test")}>테스트가기</button>
-        </div>
+        <ErrorBoundary
+            FallbackComponent={ErrorFallBack}
+            onReset={() => setError(false)}
+        >
+            <ErrorTest error={error} setError={setError} />
+        </ErrorBoundary>
     );
 }

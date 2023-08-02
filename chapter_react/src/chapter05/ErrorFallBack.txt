@@ -3,6 +3,14 @@
 
 1. ErrorBoundary 클래스는 React.Component한테 상속을 받는다.
 2. constructor 매개변수인 props는 React.Component의 props에 접근한다.
+3. ★★★★★★ 중요중요 (테스트를 몇 번해보면서 알게된 사실)
+  1) 이벤트 핸들러 내에서 error가 발생했을 때, 캐치 x
+  2) API 호출(대부분 비동기) 로직(Promise 형태)에서 던져진 에러도 캐치 x
+  3) 상태 변화에 따라 에러가 생기는 경우에는 캐치 O
+  4) ★★★★★★ 사실 제일 중요한 것은 2번처럼 비동기 API 호출에서 발생한 오류를 어떻게 캐치해서 fallback UI로 빠르게 대응할 것이냐...
+    - 비동기 상태에서 recoil로 error 상태값을 전역으로 관리하는 atom을 만들고, 에러가 발생했을때 항상 default값과 반대가 되었을 때 atom set에 error를 담으면 되지 않을까...
+    - 물론 다른 방법도 많아 관련 방법들을 여러 탐색 중이다. 
+
 
 // 리액트 공식 문서
 class ErrorBoundary extends React.Component {
