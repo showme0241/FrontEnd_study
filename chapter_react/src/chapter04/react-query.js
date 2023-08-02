@@ -13,7 +13,7 @@ export default function QueryData() {
         [QueryKey.getData],
         async () => {
             const res = await axios.get(`${baseURL}${PATH}`);
-            return res.data;
+            return res.data.slice(0, 10);
         }
     );
 
