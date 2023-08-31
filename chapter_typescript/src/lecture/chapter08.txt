@@ -1,0 +1,24 @@
+### 절대경로와 상대경로 적용
+
+React 환경
+- 아래 코드는 config.json에 작성하는 compilerOption이다.
+- baseUrl은 절대경로를 설정할 기준 경로이다.
+- paths는 baseUrl을 기준으로 특정 위치를 맵핑하는 속성이다.
+
+{
+    "compilerOptions": {
+        "baseUrl": "src",
+
+        // paths 경로 앞에 baseUrl이 디폴트로 정의됨
+        "paths": {
+            "components/*": [
+                "components/*",
+                // import할 key의 다른 경로도 추가하기
+                // 위해 배열의 형태로 경로를 생성한다.
+            ]
+        }
+    }
+}
+
+TS 환경
+- TS를 사용할 때는 tsconfig.json 파일을 루트 경로에 생성

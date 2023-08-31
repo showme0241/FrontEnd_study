@@ -1,0 +1,21 @@
+### 모듈 다시 내보내기 (배럴 파일 적용)
+- tsconfig.json에 설정된 절대 경로를 기반으로
+- named export를 사용하면 배럴 파일에서 import 구문이 객체에 컴포넌트가 담긴 채로 import하여
+- 코드 가독 및 양을 대폭 감소시킨다.
+
+ex)
+// 네임드 버전
+export const createRice = () => {
+    return <div>:)</div>
+}
+
+// 디폴트 버전
+const createRice = () => {
+    ... 생략
+}
+
+export default createRice
+
+
+export * from './crud/CreateRice'
+import { createRice, ... , ... } from "배럴 적용된 경로' // 가독성 향상
