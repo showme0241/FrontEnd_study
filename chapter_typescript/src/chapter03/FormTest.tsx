@@ -7,8 +7,14 @@ export interface FormValues {
     nickName: string;
 }
 
-const FormTest = () => {
-    const { control, handleSubmit } = useForm<FormValues>();
+export const FormTest = () => {
+    const { control, handleSubmit } = useForm<FormValues>({
+        defaultValues: {
+            email: "",
+            password: "",
+            nickName: "",
+        },
+    });
     const onSubmitHandler = (data: any) => {};
 
     return (
@@ -19,5 +25,3 @@ const FormTest = () => {
         </form>
     );
 };
-
-export default FormTest;
