@@ -1,0 +1,31 @@
+### yarn berry의 2020 출시
+pnp (Plug'n'Play)라고 불리는 새로운 패키지 관리 방식 도입
+
+* 핵심 : node_modules (대량의 패키지 저장소)에 패키지를 저장하지 않는다
+
+as-is
+1) 모듈 탐색 과정의 비효율 : 디스크 I/O 방식
+* 디스크 I/O : Disk I/O(%)라고 하며, 5초동안의 디스크(하드) 사용률
+
+- 탐색 때마다 수많은 폴더와 파일을 여닫으면서 검색하는 구조
+
+2) 유령 의존성
+- 존재하지 않는 종속성에 의존하는 코드.
+- 즉, node_modules에 설치된 의존성 파일을 package.json에 저장되지 않은 채로 불러오는 경우 (개발자간 협업시에 해독 문제 발생)
+
+3) 방대한 데이터로 매우 큰 저장소 사용
+
+to-be
+1) Plug'n'Play (PnP)
+    - node_modules 사용 X
+    - .yarn 하위 경로에 cache > .zip 포맷으로 압축 저장
+    - .pnp.cjs 파일 생성 => 의존성 트리 정보를 저장 (인터페이스 링커)
+
+=> 반복적인 디스크 I/O와 유령 의존성에서 탈출
+
+2) Zero-Installs
+    - CI 시간 감소 (git clone만으로 빌드 가능한 상태 유지)
+
+
+참조 : https://beomy.github.io/tech/etc/yarn-berry/
+
