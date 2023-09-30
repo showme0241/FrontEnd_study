@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "target": "ES5",
+        "outDir": "dist",
+        "strict": true,
+        "allowJs": true,
+        "esModuleInterop": true,
+        "jsx": "react-jsx",
+        "baseUrl": "src",
+        "paths": {
+            "component/*": ["component/*"],
+            "utils/*": ["utils/*"]
+        }
+    },
+    "ts-node": {
+        "esm": true
+    },
+    "include": ["src"]
+}
