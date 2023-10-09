@@ -1,7 +1,35 @@
+// react-eslint 기본 구성
+
 {
-    "parser": "babel-parser",
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": ["eslint:recommended", "plugin:react/recommended"],
+    "overrides": [
+        {
+            "env": {
+                "node": true
+            },
+            "files": [".eslintrc.{js,cjs}"],
+            "parserOptions": {
+                "sourceType": "script"
+            }
+        }
+    ],
     "parserOptions": {
-        "ecmaVersion": 2023,
+        "ecmaVersion": "latest",
         "sourceType": "module"
+    },
+    "plugins": ["react"],
+    "rules": {
+        "react/react-in-jsx-scope": "off",
+        "react/jsx-key":"off",
+        "react/jsx-no-undef":"off",
+        "react/no-unknown-property":"off",
+        "react/prop-types":"off",
+        "no-undef":"off",
+        "no-unused-vars":"off",
+        "no-useless-escape":"off"
     }
 }
