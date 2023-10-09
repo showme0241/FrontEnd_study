@@ -1,0 +1,26 @@
+[setting]
+WebPack
+Babel
+Bundle
+
+[env}
+Sass
+
+[convention]
+ESLint -ing
+Prettier -ing
+
+[code]
+react -ing
+next -ing
+typescript -ing
+
+[package]
+npm -ing
+yarn -ing
+yarn-berry -ing
+
+
+
+참조 문서
+https://velog.io/@kws60000/eslintairbnb-prettier-Next-Typescript-yarn-%EC%84%A4%EC%A0%95
