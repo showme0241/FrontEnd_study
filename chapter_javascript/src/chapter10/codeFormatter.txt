@@ -1,0 +1,2 @@
+참조 문서
+https://velog.io/@kws60000/eslintairbnb-prettier-Next-Typescript-yarn-%EC%84%A4%EC%A0%95
