@@ -1,21 +1,14 @@
 {
     "compilerOptions": {
-        "target": "ES5",
-        "module": "CommonJS",
+        "target": "ES6",
+        "module": "ESNext",
+        "moduleResolution": "Node",
         "outDir": "dist",
         "strict": true,
         "allowJs": true,
         "esModuleInterop": true,
         "jsx": "react-jsx",
-        "baseUrl": "src",
-        "paths": {
-            // * 아스타리스크
-            "component/*": ["component/*"],
-            "utils/*": ["utils/*"]
-        }
-    },
-    "ts-node": {
-        "esm": true
+        "baseUrl": "."
     },
     "include": ["src"]
 }
